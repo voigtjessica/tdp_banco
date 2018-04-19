@@ -1,0 +1,21 @@
+SELECT 
+COUNT(DISTINCT city_id) AS municipios_com_obras
+FROM projects p
+WHERE (p.visible = true)
+OR
+((p.status = 1 OR p.status = 3 OR p.status = 4 OR p.status = 6 OR p.status = 7 OR p.status = 8 OR p.status = 9)
+AND
+(p.type_of_project = 8 OR p.type_of_project = 9 OR p.type_of_project = 10 
+OR p.type_of_project = 11 OR p.type_of_project = 14 OR p.type_of_project = 18
+OR p.type_of_project = 19)
+AND
+(p.funded_by = 1))
+;
+
+-- filtro p.status
+--1 execution - Obra em execução.
+--3 unfinished - Obra inacabada.
+--4 paralyzed - Obra paralisada.
+--6 bidding - Obra em licitação.
+--7 hiring - Obra em contratação.
+--8 in_recasting - Obra em reformulação.
