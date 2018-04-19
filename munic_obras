@@ -1,3 +1,6 @@
+-- perguntas para o quartely report
+
+-- Qual é o número de municípios dos quais vocês têm acesso aos cronogramas de construção?
 SELECT 
 COUNT(DISTINCT city_id) AS municipios_com_obras
 FROM projects p
@@ -12,10 +15,28 @@ AND
 (p.funded_by = 1))
 ;
 
--- filtro p.status
---1 execution - Obra em execução.
---3 unfinished - Obra inacabada.
---4 paralyzed - Obra paralisada.
---6 bidding - Obra em licitação.
---7 hiring - Obra em contratação.
---8 in_recasting - Obra em reformulação.
+-- Outro jeito:
+SELECT 
+COUNT(DISTINCT city_id) AS municipios_com_obras
+FROM projects p
+WHERE (p.visible = true)
+OR
+((p.status IN (1,3,4,6,7,8,9))
+AND
+(p.type_of_project IN (8,9,10,11,14,18,19))
+AND
+(p.funded_by = 1))
+;
+
+--Quantos alertas totais foram recebidos? 
+
+SELECT * FROM inspections i
+WHERE i.status != 6 -- 168 
+;
+
+-- Qual percentual de alertas retratavam indícios de atrasos?
+SELECT * FROM inspections i
+WHERE i.status != 6 AND i.status != 1 AND i.status != 2 --128
+;
+
+-- documentação: https://tadepe.docs.apiary.io
