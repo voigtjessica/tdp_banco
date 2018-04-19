@@ -1,7 +1,7 @@
 # tdp_banco
 Querys feitas ao banco do tdp
 
-#Como upar mudanças no github pelo git bash:
+# Como upar mudanças no github pelo git bash:
 
 **iniciando** $ git init
 
